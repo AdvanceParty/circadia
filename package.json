@@ -1,7 +1,7 @@
 {
-  "name": "slashie",
+  "name": "circadia",
   "version": "1.0.0",
-  "description": "Custom slash commands for The Royals Slack workspace.",
+  "description": "Status board for the Royals Slack workspace.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -9,7 +9,11 @@
   "author": "Gil Fewster <gil@theroyals.com.au> (http://theroyals.com.au/)",
   "license": "ISC",
   "dependencies": {
+    "@slack/events-api": "^2.3.2",
     "@slack/web-api": "^5.6.0",
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "micro": "^9.3.4",
+    "qs": "^6.9.1",
+    "querystring": "^0.2.0"
   }
 }

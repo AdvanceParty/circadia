@@ -2,7 +2,7 @@
 
 ## About
 
-A basic app designed to serve as an endpoint for custom slash commands in Slack workspaces.
+Slack app designed to provide a central info/hub for staff presence and status.
 
 Serverless functions inside the /api directory are executed on the now.sh platform when called via https. Each function is intended to be used as a callable endpoint for slash commands configured in your Slack App.
 
@@ -17,8 +17,8 @@ _See Also:_
 
 - Clone the repo
 - `npm i` from the root directory to install required modules
-- create a .env file in the root directory with the name/value pair
-  - AU_COM_ADVANCEPARTY_SLASHIE_TOKEN=YOUR_BOT_TOKEN
+- create .env and .env.build files in the root directory with name/value pairs as indicated in the \_env.sample file.
+  - .env is required for production, while .env.build while allow you to access env variables when doing local de with `now dev`
 
 ---
 
@@ -27,13 +27,9 @@ _See Also:_
 ### New deployments:
 
 - Setup the Now CLI tool and login to your account
-- Create a new secret on your server called AU_COM_ADVANCEPARTY_SLASHIE_TOKEN and set its value to your bot user token
+- Login to the now.sh accout where the app is hosted
 - CD into the project's root folder and type `now`
-- That's all!
-
-### Updating existing deployments
-
-As above, on the proviso that the now.sh account is connected to the instance you want to update.
+- follow prompts to connect your local dev instance to the Now.sh project
 
 ---
 

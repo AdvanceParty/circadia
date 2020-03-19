@@ -1,0 +1,5 @@
+# use this as a template for .env and .env.build files
+# and put a copy of the relevent values into each file.
+
+SLACK_BOT_TOKEN = SLACK-BOT-USER-OATH-ACCESS-TOKEN
+SLACK_SIGNING_SECRET = YOUR-SLACK-SECRET
