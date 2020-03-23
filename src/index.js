@@ -1,19 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ThemeProvider } from 'emotion-theming';
+
 import theme from '@rebass/preset';
-import App from './App';
+import { ThemeProvider } from 'emotion-theming';
 import './css/styles.css';
-import * as serviceWorker from './serviceWorker';
+import { Auth0Provider } from './contexts/auth0-context';
+import App from './App';
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <App />
-  </ThemeProvider>,
+  <Auth0Provider>
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
+  </Auth0Provider>,
   document.getElementById('root')
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();

@@ -1,6 +1,7 @@
 import React from 'react';
+
 import Header from './ui/Header';
-import { Box, Flex } from 'rebass';
+import { Flex } from 'rebass';
 
 const flexProps = {
   alignItems: 'center',
@@ -21,7 +22,7 @@ function App(props) {
         <Header title='Circadiana' bg='tomato' />
       </Flex>
       <Flex as='main' sx={flexProps}>
-        <h3>...soon</h3>
+        <p>Hello there.</p>
       </Flex>
       <Flex as='footer' sx={{ ...flexProps, ...headerFooter }}>
         An AP Joint
