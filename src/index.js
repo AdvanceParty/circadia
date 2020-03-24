@@ -7,9 +7,9 @@ import { Auth0Provider } from './contexts/auth0-context';
 
 // theming
 import { ThemeProvider } from 'emotion-theming';
-import theme from '@rebass/preset';
-import './css/styles.css';
-
+// import theme from '@rebass/preset';
+import theme from './theme/theme';
+import './theme/styles.css';
 //
 import App from './App';
 

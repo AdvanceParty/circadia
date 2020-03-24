@@ -1,6 +1,7 @@
 import React, { Component, createContext, useContext } from 'react';
 import createAuth0Client from '@auth0/auth0-spa-js';
 
+import auth0Config from '../auth0Config.json';
 // create the context
 export const Auth0Context = createContext();
 export const useAuth0 = () => useContext(Auth0Context);
@@ -15,19 +16,14 @@ export class Auth0Provider extends Component {
     tempApiKey: ''
   };
 
-  config = {
-    domain: process.env.REACT_APP_AUTH0_DOMAIN,
-    client_id: process.env.REACT_APP_AUTH0_CLIENT_ID,
-    redirect_uri: window.location.origin
-  };
-
   componentDidMount = () => {
     this.initializeAuth0();
   };
 
-  // updateTempApiKey = tempApiKey => {
-  //   this.setState({ tempApiKey });
-  // };
+  config = {
+    ...auth0Config,
+    redirect_uri: window.location.origin
+  };
 
   initializeAuth0 = async () => {
     const auth0Client = await createAuth0Client(this.config);

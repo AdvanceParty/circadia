@@ -5,6 +5,7 @@ const base = '/api';
 
 function useSlackApi(endpoint) {
   const [data, setData] = useState({});
+  const [status, setStatus] = useState();
   const [isLoading, setisLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -20,6 +21,7 @@ function useSlackApi(endpoint) {
           headers: { 'temp-token': tempApiKey }
         });
         const data = await res.json();
+        setStatus(res.status);
         setData(data);
       } catch (e) {
         setError(e);
@@ -29,9 +31,9 @@ function useSlackApi(endpoint) {
     };
 
     fetchData();
-  }, [endpoint]);
+  }, [endpoint, tempApiKey]);
 
-  return { data, isLoading, error };
+  return { data, isLoading, error, status };
 }
 
 export default useSlackApi;

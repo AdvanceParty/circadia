@@ -8,23 +8,12 @@ import Dashboard from './components/Dashboard';
 import LoggedOut from './components/LoggedOut';
 import PageHeader from './components/PageHeader';
 
-import { Flex } from 'rebass';
-
-const flexProps = {
-  alignItems: 'center',
-  justifyContent: 'center',
-  flexDirection: 'column'
-};
-
-const headerFooter = {
-  p: 40,
-  bg: '#000',
-  color: '#fff'
-};
+import { appGrid, flexProps, headerFooter } from './theme/theme';
+import { Box, Flex } from 'rebass';
 
 function App() {
   return (
-    <>
+    <Box sx={appGrid}>
       <Flex as='header' sx={{ ...flexProps, ...headerFooter }}>
         <PageHeader title='Circadia' />
       </Flex>
@@ -38,7 +27,7 @@ function App() {
       <Flex as='footer' sx={{ ...flexProps, ...headerFooter }}>
         An AP Joint
       </Flex>
-    </>
+    </Box>
   );
 }
 
