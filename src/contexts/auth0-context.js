@@ -11,7 +11,8 @@ export class Auth0Provider extends Component {
     auth0Client: null,
     isLoading: true,
     isAuthenticated: false,
-    user: null
+    user: null,
+    tempApiKey: ''
   };
 
   config = {
@@ -23,6 +24,10 @@ export class Auth0Provider extends Component {
   componentDidMount = () => {
     this.initializeAuth0();
   };
+
+  // updateTempApiKey = tempApiKey => {
+  //   this.setState({ tempApiKey });
+  // };
 
   initializeAuth0 = async () => {
     const auth0Client = await createAuth0Client(this.config);
@@ -46,16 +51,24 @@ export class Auth0Provider extends Component {
   };
 
   render() {
-    const { auth0Client, isLoading, isAuthenticated, user } = this.state;
+    const {
+      auth0Client,
+      isLoading,
+      isAuthenticated,
+      user,
+      tempApiKey
+    } = this.state;
     const { children } = this.props;
     const configObject = {
       isLoading,
       isAuthenticated,
       user,
+      tempApiKey,
       loginWithRedirect: (...p) => auth0Client.loginWithRedirect(...p),
       getTokenSilently: (...p) => auth0Client.getTokenSilently(...p),
       getIdTokenClaims: (...p) => auth0Client.getIdTokenClaims(...p),
-      logout: (...p) => auth0Client.logout(...p)
+      logout: (...p) => auth0Client.logout(...p),
+      updateTempApiKey: tempApiKey => this.setState({ tempApiKey })
     };
 
     return (

@@ -13,12 +13,30 @@ _See Also:_
 
 ---
 
+## Authentication
+
+Auth0 is used for user authentication. See the Advance Party Auth0 account for configuration, roles, user management, etc.
+
+User registration/access is restricted to GSuite accounts on the @theroyals.com.au domain.
+
+---
+
 ## Dev
 
 - Clone the repo
 - `npm i` from the root directory to install required modules
 - create .env and .env.build files in the root directory with name/value pairs as indicated in the \_env.sample file.
   - .env is required for production, while .env.build while allow you to access env variables when doing local de with `now dev`
+
+## Dev Server
+
+```
+http://localhost:3000
+```
+
+`npm start` to launch local server for Now.sh Functions and React
+
+NOTE: Ignore the terminal's message about accessing localhost at port 55497. This is the _now_ service. To run and test your app in the browser, hit the usual port 3000
 
 ---
 
