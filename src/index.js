@@ -5,21 +5,15 @@ import { BrowserRouter } from 'react-router-dom';
 // authenticate with Auth0
 import { Auth0Provider } from './contexts/auth0-context';
 
-// theming
-import { ThemeProvider } from 'emotion-theming';
-// import theme from '@rebass/preset';
-import theme from './theme/theme';
-import './theme/styles.css';
-//
 import App from './App';
+
+import './theme/styles.scss';
 
 ReactDOM.render(
   <Auth0Provider>
-    <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </ThemeProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Auth0Provider>,
   document.getElementById('root')
 );

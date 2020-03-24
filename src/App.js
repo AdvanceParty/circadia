@@ -6,28 +6,21 @@ import AuthenticatedRoute from './components/AuthenticatedRoute';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import LoggedOut from './components/LoggedOut';
-import PageHeader from './components/PageHeader';
-
-import { appGrid, flexProps, headerFooter } from './theme/theme';
-import { Box, Flex } from 'rebass';
+import PageHeader from './components/PageHeader/PageHeader';
 
 function App() {
   return (
-    <Box sx={appGrid}>
-      <Flex as='header' sx={{ ...flexProps, ...headerFooter }}>
-        <PageHeader title='Circadia' />
-      </Flex>
-      <Flex as='main' sx={flexProps}>
+    <>
+      <PageHeader title='Circadia' />
+      <main>
         <Switch>
           <Route path='/' component={Home} exact />
           <AuthenticatedRoute path='/dashboard' component={Dashboard} exact />
           <Route path='/login' component={LoggedOut} exact />
         </Switch>
-      </Flex>
-      <Flex as='footer' sx={{ ...flexProps, ...headerFooter }}>
-        An AP Joint
-      </Flex>
-    </Box>
+      </main>
+      <footer>An AP Joint</footer>
+    </>
   );
 }
 

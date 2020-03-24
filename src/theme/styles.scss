@@ -1,11 +1,6 @@
-html {
-  box-sizing: border-box;
-}
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
+@import '_boxreset';
+@import '_typography';
+@import '_backgroundPattern';
 
 html,
 body {
@@ -15,8 +10,8 @@ body {
   padding: 0;
 }
 
-/* #root {
+#root {
   min-height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
-} */
+}

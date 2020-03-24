@@ -1,0 +1,88 @@
+.header {
+  /* @include background-pattern;*/
+
+  border-bottom: 1px solid #333;
+
+  color: #333;
+  display: grid;
+  padding: 0.5em 0.3em;
+}
+
+.authbox {
+  justify-self: end;
+}
+
+.authbox button {
+  display: inline-block;
+  height: 90%;
+  margin-left: 0.5em;
+}
+
+h1 {
+  margin: 0;
+  text-align: center;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  border-bottom: dashed 1px rgba(0, 0, 0, 0);
+
+  transition: border 600ms;
+}
+
+a:hover {
+  border-bottom: solid 1px rgba(0, 0, 0, 0.75);
+}
+
+.apiKey {
+  position: absolute;
+  width: auto;
+  display: inline-block;
+  outline: none;
+
+  padding: 0.2em;
+  font-size: 0.8em;
+  top: 0.5em;
+  left: 0.3em;
+  border-radius: 0;
+  border: 1px solid #dedede;
+
+  transition: all 400ms ease-in-out;
+}
+
+.apiKey::placeholder {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.apiKey:focus {
+  font-size: 1.2em;
+  border-radius: 5px;
+  border-color: green;
+}
+
+.apiKey:focus::placeholder {
+  color: transparent;
+}
+
+nav {
+  margin: 0;
+  padding-bottom: 1em;
+  text-align: center;
+  font-size: 0.9em;
+  text-transform: uppercase;
+}
+
+nav > * {
+  margin-left: 0.25em;
+  margin-right: 0.25em;
+}
+
+nav > *:first-child {
+  margin-left: 0;
+}
+
+nav > *:last-child {
+  margin-right: 0;
+}
