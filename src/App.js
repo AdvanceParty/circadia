@@ -4,9 +4,9 @@ import { Route, Switch } from 'react-router-dom';
 // import PrivateRoute from './components/PrivateRoute';
 import AuthenticatedRoute from './components/AuthenticatedRoute';
 import Home from './components/Home';
-import Dashboard from './components/Dashboard';
+import Dashboard from './components/Dashboard/';
 import LoggedOut from './components/LoggedOut';
-import PageHeader from './components/PageHeader/PageHeader';
+import PageHeader from './components/PageHeader/';
 
 function App() {
   return (

@@ -15,3 +15,14 @@ body {
   display: grid;
   grid-template-rows: auto 1fr auto;
 }
+
+main {
+  padding: 1em;
+}
+
+#root > footer {
+  padding: 2em 1em;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+}

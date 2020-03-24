@@ -1,6 +1,7 @@
 import React from 'react';
-import useSlackApi from '../useSlackApi';
-import { useAuth0 } from '../contexts/auth0-context';
+import useSlackApi from '../../useSlackApi';
+import { useAuth0 } from '../../contexts/auth0-context';
+import styles from './Dashboard.module.css';
 
 function Dashboard() {
   const { tempApiKey } = useAuth0();
@@ -21,15 +22,17 @@ function Dashboard() {
           profile: { real_name, status_text, image_24 }
         } = member;
         const el = is_bot ? null : (
-          <li key={id}>
-            <img src={image_24} alt={`'${real_name} Avatar'`} />
-            {real_name} | {status_text}
-          </li>
+          <UserStatus
+            name={real_name}
+            key={id}
+            status={status_text}
+            image={image_24}
+          />
         );
         console.log(el);
-        return [...acc, el];
+        return el ? [...acc, el] : acc;
       }, []);
-      return <ul>{statuses.map(li => li)}</ul>;
+      return <div className={styles.tiles}>{statuses.map(user => user)}</div>;
     }
   };
 
@@ -42,3 +45,13 @@ function Dashboard() {
 }
 
 export default Dashboard;
+
+const UserStatus = props => {
+  return (
+    <div className={styles.userStatus} key={props.id}>
+      <img src={props.image} />
+      <h5>{props.name}</h5>
+      <p>{props.status}</p>
+    </div>
+  );
+};

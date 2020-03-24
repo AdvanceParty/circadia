@@ -1,9 +1,10 @@
 import React from 'react';
+import ApiAccess from './ApiAccess';
 
 function Home() {
   return (
     <>
-      <p>Welcome home!</p>
+      <h1>Hello</h1>
     </>
   );
 }
