@@ -11,7 +11,25 @@ function Dashboard() {
     if (status === 403) {
       return <p>{data.body}</p>;
     } else {
-      return <p>JSON.stringify(data.body)</p>;
+      // const people = data.bod
+      const { members } = data.body;
+      console.log(members);
+      const statuses = members.reduce((acc, member) => {
+        const {
+          id,
+          is_bot,
+          profile: { real_name, status_text, image_24 }
+        } = member;
+        const el = is_bot ? null : (
+          <li key={id}>
+            <img src={image_24} alt={`'${real_name} Avatar'`} />
+            {real_name} | {status_text}
+          </li>
+        );
+        console.log(el);
+        return [...acc, el];
+      }, []);
+      return <ul>{statuses.map(li => li)}</ul>;
     }
   };
 
