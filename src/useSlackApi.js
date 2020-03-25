@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useAuth0 } from './contexts/auth0-context';
 
-const base = '/api';
+const base =
+  'https://ricxwds663.execute-api.ap-southeast-2.amazonaws.com/dev/api';
 
 function useSlackApi(endpoint) {
   const [data, setData] = useState({});
@@ -18,7 +19,7 @@ function useSlackApi(endpoint) {
     const fetchData = async () => {
       try {
         const res = await fetch(`${base}${endpoint}`, {
-          headers: { 'temp-token': tempApiKey }
+          headers: { 'x-api-key': tempApiKey }
         });
         const data = await res.json();
         setStatus(res.status);

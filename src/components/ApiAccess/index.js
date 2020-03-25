@@ -2,7 +2,7 @@
 // onto the serverless API functions
 import React from 'react';
 import { useAuth0 } from '../../contexts/auth0-context';
-import styles from './ApiAccess.module.css';
+import styles from './ApiAccess.module.scss';
 
 const ApiAccess = () => {
   const { tempApiKey, updateTempApiKey, isAuthenticated } = useAuth0();

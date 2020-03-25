@@ -5,41 +5,28 @@ import styles from './Dashboard.module.css';
 
 function Dashboard() {
   const { tempApiKey } = useAuth0();
-  const { isLoading, error, data, status } = useSlackApi('/getUsers');
+  const { isLoading, error, data, status } = useSlackApi('/users');
 
-  const showUsers = userList => {
-    console.log(userList);
+  const showUsers = users => {
+    console.log(users);
     if (status === 403) {
-      return <p>{data.body}</p>;
+      return <p>Forbidden</p>;
     } else {
-      // const people = data.bod
-      const { members } = data.body;
-      console.log(members);
-      const statuses = members.reduce((acc, member) => {
-        const {
-          id,
-          is_bot,
-          profile: { real_name, status_text, image_24 }
-        } = member;
-        const el = is_bot ? null : (
-          <UserStatus
-            name={real_name}
-            key={id}
-            status={status_text}
-            image={image_24}
-          />
-        );
-        console.log(el);
-        return el ? [...acc, el] : acc;
-      }, []);
+      const statuses = users.map(user => (
+        <UserStatus
+          name={user.profile.real_name}
+          key={user.id}
+          status={user.profile.status_text}
+          image={user.profile.image_24}
+        />
+      ));
       return <div className={styles.tiles}>{statuses.map(user => user)}</div>;
     }
   };
 
   return (
     <>
-      <p>Temp Api Key: {tempApiKey}</p>
-      {isLoading ? 'Loading...' : error ? error.message : showUsers(data.body)}
+      {isLoading ? 'Loading...' : error ? error.message : showUsers(data.users)}
     </>
   );
 }

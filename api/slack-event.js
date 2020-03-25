@@ -34,6 +34,9 @@ const onSlackEvent = event => {
     case 'dnd_updated_user':
       onDndUpdatedUser(event);
       break;
+    case 'presence_change':
+      onPresenceUpdatedUser(event);
+      break;
     default:
       console.log(`Igonoring ${event.type} event from Slack`);
       break;
@@ -60,4 +63,21 @@ const onDndUpdatedUser = event => {
 
   console.log(event);
   console.log('DO NOT DISTURB UPDATED!');
+};
+
+const onPresenceUpdatedUser = event => {
+  // EVENT OBJECT EXAMPLE:
+  // {
+  //   type: 'dnd_updated_user',
+  //   user: 'U94DFU1FX',
+  //   dnd_status: {
+  //     dnd_enabled: true,
+  //     next_dnd_start_ts: 1584586995,
+  //     next_dnd_end_ts: 1584590595
+  //   },
+  //   event_ts: '1584586996.075000'
+  // }
+
+  console.log(event);
+  console.log('Presence Change!');
 };
