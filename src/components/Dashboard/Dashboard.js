@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import useSlackApi from '../../useSlackApi';
-import styles from './Dashboard.module.css';
+import styles from './Dashboard.module.scss';
 
 const IMAGE_SIZES = {
   XS: 24,
@@ -32,7 +32,7 @@ function Dashboard() {
       <div className={styles.userStatus} key={id}>
         <img src={image} alt={real_name} width={imageSize} height={imageSize} />
         <div>
-          <h5>{real_name}</h5>
+          <h5 className={styles.title}>{real_name}</h5>
           <p>{status_text}</p>
         </div>
       </div>

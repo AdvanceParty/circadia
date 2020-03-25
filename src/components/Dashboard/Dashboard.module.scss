@@ -1,0 +1,34 @@
+$dark: #333333;
+$tile-gap: 25px;
+$tile-padding: 5px;
+
+.tiles {
+  display: grid;
+  grid-gap: $tile-gap;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+
+.userStatus {
+  display: grid;
+  grid-template-columns: auto 1fr;
+
+  img {
+    grid-column: 1;
+    grid-row: 1/-1;
+    border-radius: 100px;
+  }
+
+  div {
+    align-self: center;
+  }
+
+  p,
+  .title {
+    margin: 0;
+    padding: 0 $tile-padding;
+  }
+
+  p {
+    font-size: 0.65em;
+  }
+}
