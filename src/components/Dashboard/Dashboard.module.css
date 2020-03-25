@@ -1,7 +1,7 @@
 .tiles {
   display: grid;
   grid-gap: 15px;
-  grid-template-columns: repeat(auto-fit, 150px);
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
 
 .userStatus {
@@ -10,12 +10,13 @@
   row-gap: 5px;
   column-gap: 10px;
   grid-template-columns: auto 1fr;
-  grid-template-rows: auto auto;
+  /* grid-template-rows: auto auto; */
 }
 
 .userStatus > img {
   grid-column: 1;
   grid-row: 1/-1;
+  border-right: 1px solid #dedede;
 }
 
 .userStatus p,
