@@ -41,7 +41,7 @@ function Dashboard() {
         ? 'Access denied. Check yo api key.'
         : error
         ? error.message
-        : showUsers(data.users)}
+        : showUsers(data)}
     </>
   );
 }
