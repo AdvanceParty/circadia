@@ -3,16 +3,13 @@ import useSlackApi from '../../useSlackApi';
 import styles from './Dashboard.module.scss';
 
 const IMAGE_SIZES = {
-  XS: 24,
-  S: 32,
-  M: 48,
-  L: 72,
-  XL: 192,
-  XXL: 512
+  SMALL: 's',
+  MEDIUM: 'm',
+  LARGE: 'l'
 };
 
 function Dashboard() {
-  const [imageSize, setImageSize] = useState(IMAGE_SIZES.M);
+  const [imageSize, setImageSize] = useState(IMAGE_SIZES.MEDIUM);
   const { isLoading, error, data, status } = useSlackApi('/users/list');
   const forbidden = status === 403;
 
@@ -23,17 +20,14 @@ function Dashboard() {
   };
 
   const userStatus = userData => {
-    const {
-      id,
-      profile: { real_name, status_text }
-    } = userData;
-    const image = userData.profile[`image_${imageSize}`];
+    const { id, displayName, statusText, images } = userData;
+    const image = images[imageSize];
     return (
       <div className={styles.userStatus} key={id}>
-        <img src={image} alt={real_name} width={imageSize} height={imageSize} />
+        <img src={image} alt={displayName} />
         <div>
-          <h5 className={styles.title}>{real_name}</h5>
-          <p>{status_text}</p>
+          <h5 className={styles.title}>{displayName}</h5>
+          <p>{statusText}</p>
         </div>
       </div>
     );
