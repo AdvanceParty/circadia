@@ -13,7 +13,7 @@ const IMAGE_SIZES = {
 
 function Dashboard() {
   const [imageSize, setImageSize] = useState(IMAGE_SIZES.M);
-  const { isLoading, error, data, status } = useSlackApi('/users');
+  const { isLoading, error, data, status } = useSlackApi('/users/list');
   const forbidden = status === 403;
 
   const showUsers = users => {

@@ -32,7 +32,8 @@
     "react-dom": "^16.13.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
-    "rebass": "^4.0.7"
+    "rebass": "^4.0.7",
+    "uuid": "^7.0.2"
   },
   "eslintConfig": {
     "extends": "react-app"
