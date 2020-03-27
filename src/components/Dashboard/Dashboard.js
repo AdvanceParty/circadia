@@ -20,7 +20,10 @@ function Dashboard() {
   };
 
   const userStatus = userData => {
-    const { id, displayName, statusText, images } = userData;
+    const {
+      id,
+      item: { displayName, statusText, images }
+    } = userData;
     const image = images[imageSize];
     return (
       <div className={styles.userStatus} key={id}>
