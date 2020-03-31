@@ -22,18 +22,20 @@ function Dashboard() {
   const userStatus = userData => {
     const {
       id,
-      item: {
-        profile: { displayName, realName, title, status, images }
-      }
+      presence,
+      profile: { displayName, realName, title, status, images }
     } = userData;
 
     const image =
       images.filter(image => image.size == imageSize)[0] || images[0];
 
     const useName = displayName || realName || 'Secret Squirrel';
+    const classNames = `${styles.userStatus} ${
+      presence.active ? styles.online : styles.offline
+    }`;
 
     return (
-      <div className={styles.userStatus} key={id}>
+      <div className={classNames} key={id}>
         <img
           src={image.src}
           width={image.size}
@@ -63,7 +65,7 @@ function Dashboard() {
         ? 'Access denied. Check yo api key.'
         : error
         ? error.message
-        : showUsers(data)}
+        : showUsers(data.users)}
     </>
   );
 }

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAuth0 } from './contexts/auth0-context';
 
 const base =
-  'https://rdrcbapu9b.execute-api.ap-southeast-2.amazonaws.com/dev/api';
+  'https://ci2lsoudp3.execute-api.ap-southeast-2.amazonaws.com/dev/api';
 
 function useSlackApi(endpoint) {
   const [data, setData] = useState({});
