@@ -1,6 +1,7 @@
 {
   "help": "Construct the endpoint with {basepath}/{stage}/{versionString}",
-  "basePath": " https://s1pkzpokec.execute-api.ap-southeast-2.amazonaws.com",
+  "basePath": "https://jud68926vd.execute-api.ap-southeast-2.amazonaws.com",
+  "basePathLocalhost": "http://localhost:3000",
   "stage": "dev",
   "versionString": "v01"
 }
