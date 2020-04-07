@@ -14,6 +14,7 @@ export class Auth0Provider extends Component {
     isAuthenticated: false,
     user: null,
     tempApiKey: '',
+    token: null,
   };
 
   componentDidMount = () => {
@@ -42,6 +43,14 @@ export class Auth0Provider extends Component {
     this.setState({ isLoading: true });
     await this.state.auth0Client.handleRedirectCallback();
     const user = await this.state.auth0Client.getUser();
+
+    try {
+      const token = await this.state.auth0Client.getTokenSilently();
+      this.setState({ token });
+    } catch (e) {
+      console.log(e);
+    }
+
     this.setState({ user, isAuthenticated: true, isLoading: false });
     window.history.replaceState({}, document.title, window.location.pathname);
   };
@@ -53,6 +62,7 @@ export class Auth0Provider extends Component {
       isAuthenticated,
       user,
       tempApiKey,
+      token,
     } = this.state;
     const { children } = this.props;
     const configObject = {
@@ -60,6 +70,7 @@ export class Auth0Provider extends Component {
       isAuthenticated,
       user,
       tempApiKey,
+      token,
       loginWithRedirect: (...p) => auth0Client.loginWithRedirect(...p),
       getTokenSilently: (...p) => auth0Client.getTokenSilently(...p),
       getIdTokenClaims: (...p) => auth0Client.getIdTokenClaims(...p),

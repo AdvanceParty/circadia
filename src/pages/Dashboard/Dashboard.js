@@ -33,7 +33,7 @@ function Dashboard() {
 
     const useName = displayName || realName || 'Secret Squirrel';
     const classNames = `${styles.userStatus} ${
-      presence.active ? styles.online : styles.offline
+      !presence || presence.active ? styles.online : styles.offline
     }`;
 
     return (
