@@ -1,0 +1,6 @@
+{
+  "help": "Construct the endpoint with {basepath}/{stage}/{versionString}",
+  "basePath": " https://s1pkzpokec.execute-api.ap-southeast-2.amazonaws.com",
+  "stage": "dev",
+  "versionString": "v01"
+}

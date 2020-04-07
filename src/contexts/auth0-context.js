@@ -1,7 +1,7 @@
 import React, { Component, createContext, useContext } from 'react';
 import createAuth0Client from '@auth0/auth0-spa-js';
+import auth0Config from '../auth0.config.json';
 
-import auth0Config from '../auth0Config.json';
 // create the context
 export const Auth0Context = createContext();
 export const useAuth0 = () => useContext(Auth0Context);
@@ -13,7 +13,7 @@ export class Auth0Provider extends Component {
     isLoading: true,
     isAuthenticated: false,
     user: null,
-    tempApiKey: ''
+    tempApiKey: '',
   };
 
   componentDidMount = () => {
@@ -22,7 +22,7 @@ export class Auth0Provider extends Component {
 
   config = {
     ...auth0Config,
-    redirect_uri: window.location.origin
+    redirect_uri: window.location.origin,
   };
 
   initializeAuth0 = async () => {
@@ -52,7 +52,7 @@ export class Auth0Provider extends Component {
       isLoading,
       isAuthenticated,
       user,
-      tempApiKey
+      tempApiKey,
     } = this.state;
     const { children } = this.props;
     const configObject = {
@@ -64,7 +64,7 @@ export class Auth0Provider extends Component {
       getTokenSilently: (...p) => auth0Client.getTokenSilently(...p),
       getIdTokenClaims: (...p) => auth0Client.getIdTokenClaims(...p),
       logout: (...p) => auth0Client.logout(...p),
-      updateTempApiKey: tempApiKey => this.setState({ tempApiKey })
+      updateTempApiKey: (tempApiKey) => this.setState({ tempApiKey }),
     };
 
     return (

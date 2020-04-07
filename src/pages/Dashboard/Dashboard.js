@@ -1,33 +1,35 @@
 import React, { useState } from 'react';
-import useSlackApi from '../../useSlackApi';
+import useHttpApi from '../../connecters/httpApi.connector';
 import styles from './Dashboard.module.scss';
 
 const IMAGE_SIZES = {
   SMALL: 48,
   MEDIUM: 192,
-  LARGE: 512
+  LARGE: 512,
 };
 
 function Dashboard() {
   const [imageSize, setImageSize] = useState(IMAGE_SIZES.SMALL);
-  const { isLoading, error, data, status } = useSlackApi('/users/list');
+  const { isLoading, error, data, status } = useHttpApi('/users/list');
   const forbidden = status === 403;
 
-  const showUsers = users => {
+  const showUsers = (users) => {
     return (
-      <div className={styles.tiles}>{users.map(user => userStatus(user))}</div>
+      <div className={styles.tiles}>
+        {users.map((user) => userStatus(user))}
+      </div>
     );
   };
 
-  const userStatus = userData => {
+  const userStatus = (userData) => {
     const {
       id,
       presence,
-      profile: { displayName, realName, title, status, images }
+      profile: { displayName, realName, title, status, images },
     } = userData;
 
     const image =
-      images.filter(image => image.size == imageSize)[0] || images[0];
+      images.filter((image) => image.size == imageSize)[0] || images[0];
 
     const useName = displayName || realName || 'Secret Squirrel';
     const classNames = `${styles.userStatus} ${

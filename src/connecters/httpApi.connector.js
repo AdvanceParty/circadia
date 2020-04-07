@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useAuth0 } from './contexts/auth0-context';
+import { useAuth0 } from '../contexts/auth0-context';
+import config from '../httpApi.config.json';
 
-const base =
-  'https://ci2lsoudp3.execute-api.ap-southeast-2.amazonaws.com/dev/api';
+const { basePath, stage, versionString } = config;
+const endpoint = `${basePath}/${stage}/${versionString}`;
 
-function useSlackApi(endpoint) {
+function useHttpApi(method) {
   const [data, setData] = useState({});
   const [status, setStatus] = useState();
   const [isLoading, setisLoading] = useState(true);
@@ -18,8 +19,8 @@ function useSlackApi(endpoint) {
 
     const fetchData = async () => {
       try {
-        const res = await fetch(`${base}${endpoint}`, {
-          headers: { 'x-api-key': tempApiKey }
+        const res = await fetch(`${endpoint}${method}`, {
+          headers: { 'x-api-key': tempApiKey },
         });
         const data = await res.json();
         setStatus(res.status);
@@ -37,4 +38,4 @@ function useSlackApi(endpoint) {
   return { data, isLoading, error, status };
 }
 
-export default useSlackApi;
+export default useHttpApi;
