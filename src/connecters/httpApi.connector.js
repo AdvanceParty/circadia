@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth0 } from '../contexts/auth0-context';
-import { baseUrl } from '../httpApi.config.js';
+import { baseUrl } from '../httpApi.config';
 
 function useHttpApi(method) {
   const [data, setData] = useState({});
@@ -38,7 +38,7 @@ function useHttpApi(method) {
     };
 
     fetchData();
-  }, [baseUrl, tempApiKey]);
+  }, [tempApiKey]);
 
   return { data, isLoading, error, status };
 }

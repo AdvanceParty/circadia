@@ -1,17 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import useHttpApi from '../../connecters/httpApi.connector';
 import styles from './Dashboard.module.scss';
 import Tile from '../../components/Tile/Tile';
 import User from '../../models/User';
 
-const IMAGE_SIZES = {
-  SMALL: 48,
-  MEDIUM: 192,
-  LARGE: 512,
-};
-
 function Dashboard() {
-  const [imageSize, setImageSize] = useState(IMAGE_SIZES.SMALL);
   const { isLoading, error, data, status } = useHttpApi('/users/list');
   const forbidden = status === 403;
 

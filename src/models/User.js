@@ -2,11 +2,11 @@ class User {
   constructor({ id = null, presence = null, profile = null, dndStatus = null }) {
     this._data = generateDataObejct();
     initialise(this, { id, presence, profile, dndStatus });
+    return this;
   }
 
   setPresence = (presence) => (this._data.presence = JSON.parse(JSON.stringify(presence)));
   setProfile = (profile) => (this._data.profile = JSON.parse(JSON.stringify(profile)));
-  setImages = (images) => (this._data.images = JSON.parse(JSON.stringify(images)));
   setId = (id) => (this._data.id = id);
   setDndStatus = (dndStatus) => (this._data.dndStatus = JSON.parse(JSON.stringify(dndStatus)));
 
@@ -42,6 +42,10 @@ class User {
   get images() {
     const { images } = this._data.profile || [];
     return images.map((image) => ({ ...image }));
+  }
+
+  clone() {
+    return new User(this._data);
   }
 }
 
