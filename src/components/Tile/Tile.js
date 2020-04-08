@@ -2,16 +2,24 @@ import React from 'react';
 import styles from './Tile.module.scss';
 
 function Tile(props) {
-  const {
-    image,
-    title,
-    name = 'Secret Squirrel',
-    status,
-    presence,
-    ...restProps
-  } = props;
+  const { user, ...restProps } = props;
+  const { name, title, statusText, isOnline, doNotDisturb, images } = user;
+  const image = images[2];
 
-  const classes = `${styles.tile} ${!presence.active ? styles.offline : null}`;
+  const classes = `${styles.tile} ${!isOnline ? styles.offline : null}`;
+
+  const titleElement = title ? (
+    <p>
+      <em>{title}</em>
+    </p>
+  ) : null;
+
+  const dndElement = doNotDisturb ? (
+    <p>
+      <em>Do Not Disturb</em>
+    </p>
+  ) : null;
+
   return (
     <article {...restProps} className={classes}>
       <header>
@@ -25,14 +33,9 @@ function Tile(props) {
       </header>
       <section>
         <h5 className={styles.name}>{name}</h5>
-        {title ? (
-          <p>
-            <em>{title}</em>
-          </p>
-        ) : (
-          ''
-        )}
-        <p>{status.text}</p>
+        {titleElement}
+        {dndElement}
+        <p>{statusText}</p>
       </section>
     </article>
   );

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import useHttpApi from '../../connecters/httpApi.connector';
 import styles from './Dashboard.module.scss';
 import Tile from '../../components/Tile/Tile';
+import User from '../../models/User';
 
 const IMAGE_SIZES = {
   SMALL: 48,
@@ -15,40 +16,12 @@ function Dashboard() {
   const forbidden = status === 403;
 
   const showUsers = (users) => {
-    return (
-      <div className={styles.tiles}>
-        {users.map((user) => userStatus(user))}
-      </div>
-    );
+    return <div className={styles.tiles}>{users.map((user) => userStatus(user))}</div>;
   };
 
   const userStatus = (userData) => {
-    const {
-      id,
-      presence,
-      profile: { displayName, realName, title, status, images },
-    } = userData;
-
-    const image =
-      images.filter((image) => image.size == imageSize)[0] || images[0];
-
-    const name = displayName || realName;
-
-    // ToDO: Bring in Tile COmponent for each user.
-
-    const classNames = `${styles.userStatus} ${
-      !presence || presence.active ? styles.online : styles.offline
-    }`;
-
-    return (
-      <Tile
-        image={image}
-        title={title}
-        name={name}
-        status={status}
-        presence={presence}
-      />
-    );
+    const user = new User(userData);
+    return <Tile user={user} key={user.id} />;
   };
 
   return (

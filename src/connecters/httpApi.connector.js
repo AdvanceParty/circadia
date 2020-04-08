@@ -26,9 +26,7 @@ function useHttpApi(method) {
       try {
         const res = await fetch(`${baseUrl}${method}`, requestOptions);
         const data = await res.json();
-        console.log(data);
         setStatus(res.status);
-        console.log(res.status);
         setData(data);
       } catch (e) {
         console.errors(`AWS API Error: ${e.message}`);
