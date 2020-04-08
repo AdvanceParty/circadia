@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import useHttpApi from '../../connecters/httpApi.connector';
 import styles from './Dashboard.module.scss';
+import Tile from '../../components/Tile/Tile';
 
 const IMAGE_SIZES = {
   SMALL: 48,
@@ -31,32 +32,22 @@ function Dashboard() {
     const image =
       images.filter((image) => image.size == imageSize)[0] || images[0];
 
-    const useName = displayName || realName || 'Secret Squirrel';
+    const name = displayName || realName;
+
+    // ToDO: Bring in Tile COmponent for each user.
+
     const classNames = `${styles.userStatus} ${
       !presence || presence.active ? styles.online : styles.offline
     }`;
 
     return (
-      <div className={classNames} key={id}>
-        <img
-          src={image.src}
-          width={image.size}
-          height={image.size}
-          alt={useName}
-          className={styles.profilePic}
-        />
-        <div>
-          <h5 className={styles.title}>{useName}</h5>
-          {title ? (
-            <p>
-              <em>{title}</em>
-            </p>
-          ) : (
-            ''
-          )}
-          <p>{status.text}</p>
-        </div>
-      </div>
+      <Tile
+        image={image}
+        title={title}
+        name={name}
+        status={status}
+        presence={presence}
+      />
     );
   };
 
