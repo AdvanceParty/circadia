@@ -43,6 +43,7 @@ function Dashboard() {
           width={image.size}
           height={image.size}
           alt={useName}
+          className={styles.profilePic}
         />
         <div>
           <h5 className={styles.title}>{useName}</h5>

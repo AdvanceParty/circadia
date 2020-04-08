@@ -16,12 +16,12 @@ $tile-padding: 5px;
   border-radius: 5px;
   box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.1);
 
-  img {
+  .profilePic {
     grid-column: 1;
     grid-row: 1/-1;
     border-radius: 100px;
     opacity: 1;
-    border: 5px solid #009933;
+    border: 2px solid #009933;
   }
 
   &.offline {
@@ -33,7 +33,7 @@ $tile-padding: 5px;
       opacity: 0.75;
     }
 
-    img {
+    .profilePic {
       border-color: #dedede;
       opacity: 0.5;
     }
