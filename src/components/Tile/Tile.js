@@ -21,8 +21,10 @@ function Tile(props) {
         break;
       case 'user_dnd_change':
         updatedUser.setDndStatus(data);
+        break;
       case 'user_presence_change':
         updatedUser.setPresence(data);
+        break;
       default:
       // ignore
     }
