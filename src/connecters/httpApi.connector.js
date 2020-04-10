@@ -8,7 +8,7 @@ function useHttpApi(method) {
   const [isLoading, setisLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const { tempApiKey } = useAuth0();
+  const { tempApiKey, token } = useAuth0();
 
   useEffect(() => {
     setisLoading(true);
@@ -18,9 +18,12 @@ function useHttpApi(method) {
       headers: {
         // 'Content-Type': 'application/json',
         'X-Api-Key': tempApiKey,
+        Authorization: `Bearer ${token}`,
       },
       // method: 'POST',
     };
+
+    console.log(token);
 
     const fetchData = async () => {
       try {
