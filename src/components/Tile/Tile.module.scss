@@ -2,7 +2,7 @@
 
 .tile {
   --border-size-tile: 2px;
-  --border-size-profilePic: 5px;
+  --border-size-profilePic: 2px;
   --col-text-away: #999;
 
   --col-dark: rgba(30, 30, 30, 1);
@@ -24,7 +24,7 @@
   --profile-filter: none;
 
   --border-col: var(--col-accent);
-  --col-bg: var(--col-dark);
+  --col-bg: var(--col-light);
 
   &.offline {
     --col-accent: var(--col-accent-offline);
@@ -94,8 +94,8 @@
       margin: 0;
       padding-top: calc(var(--image-size) * 0.5);
       padding-bottom: 0.75em;
-      background-color: var(--col-bg);
-      color: var(--col-light);
+      // background-color: var(--col-bg);
+      // color: var(--col-light);
     }
     .title {
       padding: 0.2em 0 0.35em 0;
