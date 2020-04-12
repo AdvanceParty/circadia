@@ -1,4 +1,8 @@
 class User {
+  static Offline = 'offline';
+  static DnD = 'dnd';
+  static Available = 'available';
+
   constructor({ id = null, presence = null, profile = null, dndStatus = null }) {
     this._data = generateDataObejct();
     initialise(this, { id, presence, profile, dndStatus });
@@ -42,6 +46,10 @@ class User {
   get images() {
     const { images } = this._data.profile || [];
     return images.map((image) => ({ ...image }));
+  }
+
+  get availability() {
+    return !this.isOnline ? User.Offline : this.doNotDisturb ? User.DnD : User.Available;
   }
 
   clone() {

@@ -2,13 +2,17 @@ import React, { useMemo, useRef, useState } from 'react';
 import styles from './Tile.module.scss';
 import useWebSocket from 'react-use-websocket';
 import { baseUrl } from '../../websocket.config';
+import User from '../../models/User';
+
+const availabilityClassName = {
+  [User.Offline]: styles.offline,
+  [User.DnD]: styles.dnd,
+  [User.Available]: styles.available,
+};
 
 function Tile(props) {
   const { user, ...restProps } = props;
   const [userData, setUserData] = useState(user.clone());
-
-  // const { name, title, statusText, isOnline, doNotDisturb, images, id } = user;
-
   const onUserChageEvent = (evt) => {
     const { event, userId, data } = JSON.parse(evt.data);
     if (userId !== userData.id) return;
@@ -45,24 +49,28 @@ function Tile(props) {
 
   useWebSocket(baseUrl, STATIC_OPTIONS);
 
-  const classes = `${styles.tile} ${!userData.isOnline ? styles.offline : null}`;
+  const availability = userData.availability;
+  const classes = [styles.tile, availabilityClassName[availability]];
 
-  const titleElement = userData.title ? (
-    <p>
-      <em>{userData.title}</em>
-    </p>
-  ) : null;
+  const availabilityMessage = userData.doNotDisturb
+    ? 'Do not disturb'
+    : userData.isOnline
+    ? 'Available'
+    : 'Offline';
+  const image = userData.images[3];
+  console.log(image);
 
-  const dndElement = userData.doNotDisturb ? (
-    <p>
-      <em>Do Not Disturb</em>
-    </p>
-  ) : null;
-
-  const image = userData.images[2];
+  const img = 'blue';
 
   return (
-    <article {...restProps} className={classes}>
+    <article
+      {...restProps}
+      className={classes.join(' ')}
+      style={{
+        '--image-size': `${image.size}px`,
+        '--profile-pic': `url("${image.src}")`,
+      }}
+    >
       <header>
         <img
           src={image.src}
@@ -73,10 +81,9 @@ function Tile(props) {
         />
       </header>
       <section>
-        <h5 className={styles.name}>{userData.name}</h5>
-        {titleElement}
-        {dndElement}
-        <p>{userData.statusText}</p>
+        <h2 className={styles.name}>{userData.name}</h2>
+        <p className={styles.title}>{userData.title || '---'}</p>
+        <p className={styles.status}>{userData.statusText}</p>
       </section>
     </article>
   );
