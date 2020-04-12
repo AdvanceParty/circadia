@@ -57,7 +57,7 @@ function Tile(props) {
     : userData.isOnline
     ? 'Available'
     : 'Offline';
-  const image = userData.images[3];
+  const image = userData.images[4];
   console.log(image);
 
   const img = 'blue';
@@ -72,17 +72,13 @@ function Tile(props) {
       }}
     >
       <header>
-        <img
-          src={image.src}
-          width={image.size}
-          height={image.size}
-          alt={userData.name}
-          className={styles.profilePic}
-        />
+        <div>
+          <p>{availabilityMessage}</p>
+          <h2>{userData.name}</h2>
+          <p className={styles.title}>{userData.title || '---'}</p>
+        </div>
       </header>
       <section>
-        <h2 className={styles.name}>{userData.name}</h2>
-        <p className={styles.title}>{userData.title || '---'}</p>
         <p className={styles.status}>{userData.statusText}</p>
       </section>
     </article>
