@@ -11,9 +11,9 @@
   --col-accent-busy: #f98d00;
   --col-accent-away: #efefef;
 
-  --shadow-active: 2px 2px 8px 2px rgba(0, 0, 0, 0.1);
-  --shadow-away: 0px 0px 2px 0px rgba(0, 0, 0, 0.1);
-  --shadow-profile: 0 0 3px 0px rgba(0, 0, 0, 0.8);
+  --shadow-active: 3px 3px 6px 2px rgba(0, 0, 0, 0.15);
+  --shadow-away: inset 1px 1px 0px 1px rgba(0, 0, 0, 0.1);
+  --shadow-profile: inset 2px 2px 3px 0px rgba(0, 0, 0, 0.8);
   --opacity-away: 0.6;
 
   --col-accent: var(--col-accent-active);
@@ -27,6 +27,8 @@
   --col-bg: var(--col-light);
 
   &.offline {
+    --border-size-tile: 1px;
+    --border-col: #efefef;
     --col-accent: var(--col-accent-offline);
     --col-bg: var(--col-accent-away);
     --shadow: var(--shadow-away);
@@ -46,49 +48,39 @@
 }
 
 .tile {
-  position: relative;
+  // position: relative;
   transition: border 1200ms, padding 300ms;
 
-  header {
-    position: absolute;
-    width: var(--image-size);
-    overflow: hidden;
-    margin: 0 auto;
-    z-index: 20;
+  border-radius: 35px 0px 35px 0px;
+  box-shadow: var(--shadow);
+  border: var(--border-size-tile) solid var(--border-col);
 
-    left: 25px;
-    top: calc(50% - calc(var(--image-size) * 0.5));
-    border-radius: 100px;
-    border: var(--border-size-profilePic) solid var(--col-accent);
-    box-shadow: var(--shadow-profile);
+  display: grid;
+  grid-template-columns: auto 1fr;
+
+  header {
+    align-self: center;
+    padding-left: calc(var(--image-size) * 0.25);
 
     img {
       display: block;
       transition: all 450ms;
-      width: 100%;
-      height: 100%;
+      border-radius: 100px;
+      border: var(--border-size-profilePic) solid var(--col-accent);
       opacity: var(--profile-opacity);
       filter: var(--profile-filter);
     }
   }
 
   section {
-    border-radius: 65px 5px 5px 65px;
-    box-shadow: var(--shadow);
-    border: var(--border-size-tile) solid var(--border-col);
-    // margin-top: calc(var(--image-size) * 0.5);
-
     color: var(--textCol);
 
     position: relative;
     overflow: hidden;
-    background-color: var(--col-accent);
-    // padding-left: 5%;
 
     > * {
       text-align: left;
-      background-color: #fff;
-      padding: 0 0 0 120px;
+      padding: 0 0 0 20px;
       margin: 0;
     }
 
