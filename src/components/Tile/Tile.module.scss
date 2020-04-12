@@ -47,7 +47,6 @@
 
 .tile {
   position: relative;
-  padding: calc(1vw + 1.1em);
   transition: border 1200ms, padding 300ms;
 
   header {
@@ -57,8 +56,9 @@
     margin: 0 auto;
     z-index: 20;
 
+    left: 25px;
+    top: calc(50% - calc(var(--image-size) * 0.5));
     border-radius: 100px;
-    margin-left: calc(52% - var(--image-size));
     border: var(--border-size-profilePic) solid var(--col-accent);
     box-shadow: var(--shadow-profile);
 
@@ -73,38 +73,36 @@
   }
 
   section {
-    border-radius: 5px;
+    border-radius: 65px 5px 5px 65px;
     box-shadow: var(--shadow);
     border: var(--border-size-tile) solid var(--border-col);
-    margin-top: calc(var(--image-size) * 0.5);
+    // margin-top: calc(var(--image-size) * 0.5);
 
     color: var(--textCol);
 
     position: relative;
     overflow: hidden;
     background-color: var(--col-accent);
-    padding-left: 5%;
+    // padding-left: 5%;
 
     > * {
-      text-align: center;
+      text-align: left;
       background-color: #fff;
-      padding-right: 7%;
+      padding: 0 0 0 120px;
+      margin: 0;
     }
 
     .name {
-      margin: 0;
-      padding-top: calc(var(--image-size) * 0.5);
+      padding-top: 0.5em;
     }
 
     .title {
-      margin: 0;
       font-size: 0.8em;
     }
 
     .status {
-      margin: 0;
-      padding-top: 1em;
-      padding-bottom: 2em;
+      // padding-top: 1.25em;
+      padding-bottom: 1.75em;
     }
   }
 }
