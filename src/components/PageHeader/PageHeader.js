@@ -3,12 +3,10 @@ import { NavLink } from 'react-router-dom';
 import AuthedUser from '../AuthedUser';
 import LogInOut from '../LogInOut';
 import styles from './PageHeader.module.scss';
-import ApiAccess from '../ApiAccess';
 
 function PageHeader(props) {
   return (
     <header className={styles.header}>
-      <ApiAccess />
       <div className={styles.authbox}>
         <AuthedUser />
         <LogInOut />
