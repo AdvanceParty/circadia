@@ -1,49 +1,59 @@
-import { useState, useEffect } from 'react';
-import { useAuth0 } from '../contexts/auth0-context';
-import { baseUrl } from '../websocket.config';
+// import { useState, useEffect } from 'react';
+// const config = require('../websocket.config.json');
 
-function useWebsocket() {
-  const [websocket, setWebsocket] = useState();
-  const { tempApiKey } = useAuth0();
+// const getWebsocketUrl = () => {
+//   // switch (process.env.NODE_ENV) {
+//   //   case "development":
+//   // }
 
-  useEffect(() => {
-    const onopen = () => {
-      console.log('ws connected');
-    };
+//   const nodeEnv = process.env.NODE_ENV;
+//   const url = config[nodeEnv] || config.default;
+//   console.log(`Connecting to Websocket on ${url}`);
+//   return url;
+// };
 
-    const onmessage = (evt) => {
-      const message = JSON.parse(evt.data);
-      console.log('ws event');
-      console.log(message);
-    };
+// function useWebsocket() {
+//   const [websocket, setWebsocket] = useState();
+//   const [socketId, setSocketId] = useState(null);
 
-    const onclose = () => {
-      console.log('disconnected');
-      connect();
-    };
+//   useEffect(() => {
+//     const onopen = () => {
+//       console.log('ws connected');
+//     };
 
-    const connect = () => {
-      if (!websocket || websocket.readyState > WebSocket.OPEN) {
-        const websocket = new WebSocket(baseUrl);
-        websocket.onopen = onopen;
-        websocket.onmessage = onmessage;
-        websocket.onclose = onclose;
-        setWebsocket(websocket);
-      }
-    };
+//     const onmessage = (evt) => {
+//       const message = JSON.parse(evt.data);
+//       console.log('ws event');
+//       console.log(message);
+//     };
 
-    connect();
+//     const onclose = () => {
+//       console.log('disconnected');
+//       connect();
+//     };
 
-    return () => {
-      if (websocket) {
-        // cancel the auto-reconnect
-        websocket.onclose = () => null;
-        websocket.close();
-      }
-    };
-  }, [tempApiKey]);
+//     const connect = () => {
+//       if (!websocket || websocket.readyState > WebSocket.OPEN) {
+//         const websocket = new WebSocket(getWebsocketUrl());
+//         websocket.onopen = onopen;
+//         websocket.onmessage = onmessage;
+//         websocket.onclose = onclose;
+//         setWebsocket(websocket);
+//       }
+//     };
 
-  return { websocket };
-}
+//     connect();
 
-export default useWebsocket;
+//     return () => {
+//       if (websocket) {
+//         // cancel the auto-reconnect
+//         websocket.onclose = () => null;
+//         websocket.close();
+//       }
+//     };
+//   }, [tempApiKey]);
+
+//   return { websocket };
+// }
+
+// export default useWebsocket;

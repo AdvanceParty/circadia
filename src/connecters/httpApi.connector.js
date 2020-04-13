@@ -1,7 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useAuth0 } from '../contexts/auth0-context';
-import { baseUrl } from '../httpApi.config';
 import { NotAuthorisedError } from '../models/Errors';
+
+const { baseUrl, stage, versionString } = require('../httpApi.config.json');
+
+const connectToServer = baseUrl[process.env.NODE_ENV] || baseUrl.default;
+const endPoint = `${connectToServer}/${stage}/api/${versionString}`;
+console.log(`--> Using API at ${endPoint}`);
 
 function useHttpApi(method) {
   const [data, setData] = useState({});
@@ -17,7 +22,7 @@ function useHttpApi(method) {
     const fetchData = async () => {
       try {
         const token = await getTokenSilently();
-        const res = await fetch(`${baseUrl}${method}`, {
+        const res = await fetch(`${endPoint}${method}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

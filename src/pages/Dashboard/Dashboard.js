@@ -9,7 +9,6 @@ function Dashboard() {
   const { isLoading, error, data } = useHttpApi('/users/list');
 
   const showUsers = (users) => {
-    console.log(users);
     const tiles = users.map((userData) => {
       const user = new User(userData);
       return <Tile user={user} key={user.id} />;

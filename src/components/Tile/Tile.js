@@ -1,8 +1,16 @@
 import React, { useMemo, useRef, useState } from 'react';
 import styles from './Tile.module.scss';
 import useWebSocket from 'react-use-websocket';
-import { baseUrl } from '../../websocket.config';
 import User from '../../models/User';
+
+import { ReactComponent as AwayIcon } from '../../assets/icons/away.svg';
+import { ReactComponent as DndIcon } from '../../assets/icons/dnd.svg';
+import { ReactComponent as AvailableIcon } from '../../assets/icons/available.svg';
+
+const wsConfig = require('../../websocket.config');
+const baseUrl = wsConfig[process.env.NODE_ENV] || wsConfig.default;
+
+console.info(`--> Connecting to websocket at: ${baseUrl}`);
 
 const availabilityClassName = {
   [User.Offline]: styles.offline,
@@ -52,37 +60,44 @@ function Tile(props) {
   const availability = userData.availability;
   const classes = [styles.tile, availabilityClassName[availability]];
 
-  const availabilityMessage = userData.doNotDisturb
-    ? 'Do not disturb'
-    : userData.isOnline
-    ? 'Available'
-    : 'Offline';
-  const image = userData.images[4];
-  console.log(image);
+  const availabilityIcon = !userData.isOnline ? (
+    <AwayIcon className={styles.availability} />
+  ) : userData.doNotDisturb ? (
+    <DndIcon className={styles.availability} />
+  ) : (
+    <AvailableIcon className={styles.availability} />
+  );
 
-  const img = 'blue';
+  const image = userData.images[4];
+  const inlineStyleAtts = {
+    '--image-size': `${image.size}px`,
+    '--profile-pic': `url("${image.src}")`,
+  };
+
+  const userTitle = () => {
+    return userData.title ? <p className={styles.title}>{userData.title}</p> : '';
+  };
 
   return (
-    <article
-      {...restProps}
-      className={classes.join(' ')}
-      style={{
-        '--image-size': `${image.size}px`,
-        '--profile-pic': `url("${image.src}")`,
-      }}
-    >
-      <header>
-        <div>
-          <p>{availabilityMessage}</p>
-          <h2>{userData.name}</h2>
-          <p className={styles.title}>{userData.title || '---'}</p>
-        </div>
-      </header>
-      <section>
-        <p className={styles.status}>{userData.statusText}</p>
-      </section>
+    <article {...restProps} className={classes.join(' ')} style={inlineStyleAtts}>
+      <div>
+        <h2>{userData.name}</h2>
+        {jobTitle(userData.title)}
+        {statusText(userData.statusText)}
+        {availabilityIcon}
+      </div>
     </article>
   );
 }
 
 export default Tile;
+
+const jobTitle = (data) => {
+  if (!data) return '';
+  return <p className={styles.title}>{data}</p>;
+};
+
+const statusText = (data) => {
+  if (!data) return '';
+  return <p className={styles.status}>{data}</p>;
+};
