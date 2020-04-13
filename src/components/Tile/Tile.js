@@ -81,10 +81,10 @@ function Tile(props) {
   return (
     <article {...restProps} className={classes.join(' ')} style={inlineStyleAtts}>
       <div>
+        {availabilityIcon}
         <h2>{userData.name}</h2>
         {jobTitle(userData.title)}
         {statusText(userData.statusText)}
-        {availabilityIcon}
       </div>
     </article>
   );
