@@ -1,8 +1,0 @@
-{
-  "env": {
-    "SLACK_BOT_TOKEN": "@au_com_advanceparty_circadia_slack_bot_token",
-    "SLACK_SIGNING_SECRET": "@au_com_advanceparty_circadia_slack_signing_secret",
-    "CLIENT_SECRET": "@au_com_advanceparty_circadia_slack_client_secret",
-    "TEMP_API_PW": "@au_com_advanceparty_circadia_temp_api_pw"
-  }
-}

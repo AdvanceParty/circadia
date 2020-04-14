@@ -50,6 +50,7 @@ function Tile(props) {
   const STATIC_OPTIONS = useMemo(
     () => ({
       onMessage: (evt) => propRef.current(evt),
+      shouldReconnect: (closeEvent) => true,
       share: true,
     }),
     []

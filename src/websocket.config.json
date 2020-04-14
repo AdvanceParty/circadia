@@ -1,4 +1,3 @@
 {
-  "default": "wss://e7wan5bl3e.execute-api.ap-southeast-2.amazonaws.com/dev",
-  "development": "ws://localhost:3001"
+  "default": "wss://e7wan5bl3e.execute-api.ap-southeast-2.amazonaws.com/dev"
 }

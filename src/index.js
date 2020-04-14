@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
 // authenticate with Auth0
-import { Auth0Provider } from './contexts/auth0-context';
+import { Auth0Provider } from './contexts/auth0.context';
 
 import App from './App';
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useAuth0 } from '../contexts/auth0-context';
+import { useAuth0 } from '../contexts/auth0.context';
 import { NotAuthorisedError } from '../models/Errors';
 
 const { baseUrl, stage, versionString } = require('../httpApi.config.json');
