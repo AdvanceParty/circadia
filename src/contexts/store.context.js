@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer } from 'react';
-import React, { useMemo, useRef, useState } from 'react';
+// import React, { useMemo, useRef, useState } from 'react';
 import User from '../models/User';
 
 // import useWebSocket from 'react-use-websocket';
@@ -17,28 +17,35 @@ const initialState = {
 };
 
 // create a provider
-const StoreProvider = (props) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  const reducer = (state, action) => {
+export const StoreProvider = (props) => {
+  const [state, dispatch] = useReducer((state, action) => {
+    console.log(action);
     const { type, payload } = action;
     switch (type) {
+      case 'insertUser':
+        var updatedUser = new User(payload);
+        return { users: { ...state.users, [updatedUser.id]: updatedUser } };
       case 'user_profile_change':
-        const updatedUser = state.users[payload.id] || new User();
+        var updatedUser = state.users[payload.id] || new User();
         updatedUser.setProfile(payload);
-        return { users: { ...state.users, updatedUser } };
+        return { users: { ...state.users, [updatedUser.id]: updatedUser } };
       case 'user_dnd_change':
-        const updatedUser = state.users[payload.id] || new User();
+        var updatedUser = state.users[payload.id] || new User();
         updatedUser.setDndStatus(payload);
-        return { users: { ...state.users, updatedUser } };
+        return { users: { ...state.users, [updatedUser.id]: updatedUser } };
       case 'user_presence_change':
-        const updatedUser = state.users[payload.id] || new User();
+        var updatedUser = state.users[payload.id] || new User();
         updatedUser.setPresence(payload);
-        return { users: { ...state.users, updatedUser } };
+        return { users: { ...state.users, [updatedUser.id]: updatedUser } };
       default:
-        throw new Error(`Invalid action '${tpye}' for Store reducer.`);
+        throw new Error(`Invalid action '${type}' for Store reducer.`);
     }
+  }, initialState);
+
+  const getUsers = () => {
+    const values = Object.values(state.users);
+    return values.map((user) => user.clone());
   };
 
-  return <Store.Provider value={{ state, dispatch }}>{props.children}</Store.Provider>;
+  return <Store.Provider value={{ state, dispatch, getUsers }}>{props.children}</Store.Provider>;
 };

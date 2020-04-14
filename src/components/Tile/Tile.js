@@ -1,16 +1,15 @@
 import React, { useMemo, useRef, useState } from 'react';
 import styles from './Tile.module.scss';
-import useWebSocket from 'react-use-websocket';
+// import useWebSocket from 'react-use-websocket';
 import User from '../../models/User';
 
 import { ReactComponent as AwayIcon } from '../../assets/icons/away.svg';
 import { ReactComponent as DndIcon } from '../../assets/icons/dnd.svg';
 import { ReactComponent as AvailableIcon } from '../../assets/icons/available.svg';
 
-const wsConfig = require('../../websocket.config');
-const baseUrl = wsConfig[process.env.NODE_ENV] || wsConfig.default;
-
-console.info(`--> Connecting to websocket at: ${baseUrl}`);
+// const wsConfig = require('../../websocket.config');
+// const baseUrl = wsConfig[process.env.NODE_ENV] || wsConfig.default;
+// console.info(`--> Connecting to websocket at: ${baseUrl}`);
 
 const availabilityClassName = {
   [User.Offline]: styles.offline,
@@ -21,42 +20,43 @@ const availabilityClassName = {
 function Tile(props) {
   const { user, ...restProps } = props;
   const [userData, setUserData] = useState(user.clone());
-  const onUserChageEvent = (evt) => {
-    const { event, userId, data } = JSON.parse(evt.data);
-    if (userId !== userData.id) return;
 
-    const updatedUser = userData.clone();
+  // const onUserChageEvent = (evt) => {
+  //   const { event, userId, data } = JSON.parse(evt.data);
+  //   if (userId !== userData.id) return;
 
-    switch (event) {
-      case 'user_profile_change':
-        updatedUser.setProfile(data);
-        break;
-      case 'user_dnd_change':
-        updatedUser.setDndStatus(data);
-        break;
-      case 'user_presence_change':
-        updatedUser.setPresence(data);
-        break;
-      default:
-      // ignore
-    }
+  //   const updatedUser = userData.clone();
 
-    setUserData(updatedUser);
-  };
+  //   switch (event) {
+  //     case 'user_profile_change':
+  //       updatedUser.setProfile(data);
+  //       break;
+  //     case 'user_dnd_change':
+  //       updatedUser.setDndStatus(data);
+  //       break;
+  //     case 'user_presence_change':
+  //       updatedUser.setPresence(data);
+  //       break;
+  //     default:
+  //     // ignore
+  //   }
 
-  const propRef = useRef(null);
-  propRef.current = onUserChageEvent;
+  //   setUserData(updatedUser);
+  // };
 
-  const STATIC_OPTIONS = useMemo(
-    () => ({
-      onMessage: (evt) => propRef.current(evt),
-      shouldReconnect: (closeEvent) => true,
-      share: true,
-    }),
-    []
-  );
+  // const propRef = useRef(null);
+  // propRef.current = onUserChageEvent;
 
-  useWebSocket(baseUrl, STATIC_OPTIONS);
+  // const STATIC_OPTIONS = useMemo(
+  //   () => ({
+  //     onMessage: (evt) => propRef.current(evt),
+  //     shouldReconnect: (closeEvent) => true,
+  //     share: true,
+  //   }),
+  //   []
+  // );
+
+  // useWebSocket(baseUrl, STATIC_OPTIONS);
 
   const availability = userData.availability;
   const classes = [styles.tile, availabilityClassName[availability]];
