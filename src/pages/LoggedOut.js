@@ -1,9 +1,13 @@
 import React from 'react';
+import LogInOut from '../components/LogInOut';
 
 function LoggedOut() {
   return (
     <>
-      <p>You need to login first!</p>
+      <p>You are logged out.</p>
+      <p>
+        <LogInOut />
+      </p>
     </>
   );
 }

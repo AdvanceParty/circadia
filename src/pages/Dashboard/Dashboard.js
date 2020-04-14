@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import useHttpApi from '../../connecters/httpApi.connector';
+// import { useAuth0 } from '../contexts/auth0.context';
 import { useStore } from '../../contexts/store.context';
 import styles from './Dashboard.module.scss';
 import Tile from '../../components/Tile/Tile';
@@ -10,6 +11,8 @@ function Dashboard() {
   const { isLoading, error, data } = useHttpApi('/users/list');
   const { dispatch, getUsers } = useStore();
   const users = data.users || [];
+
+  // const {getTokenSilently } = useAuth0();
 
   useEffect(() => {
     users.map((user) => {

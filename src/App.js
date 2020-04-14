@@ -14,8 +14,8 @@ function App() {
       <PageHeader title='Circadia' />
       <main>
         <Switch>
-          <Route path='/' component={Home} exact />
-          <AuthenticatedRoute path='/dashboard' component={Dashboard} exact />
+          {/* <Route path='/' component={Home} exact /> */}
+          <AuthenticatedRoute path='/' component={Dashboard} exact />
           <Route path='/login' component={LoggedOut} exact />
         </Switch>
       </main>

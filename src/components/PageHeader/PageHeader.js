@@ -7,12 +7,19 @@ import styles from './PageHeader.module.scss';
 function PageHeader(props) {
   return (
     <header className={styles.header}>
+      <h1>{props.title}</h1>
       <div className={styles.authbox}>
         <AuthedUser />
         <LogInOut />
       </div>
-      <h1>{props.title}</h1>
-      <nav>
+    </header>
+  );
+}
+
+export default PageHeader;
+
+/*
+<nav>
         <NavLink to='/' exact>
           Home
         </NavLink>
@@ -20,8 +27,4 @@ function PageHeader(props) {
           Dashboard
         </NavLink>
       </nav>
-    </header>
-  );
-}
-
-export default PageHeader;
+*/

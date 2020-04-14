@@ -8,7 +8,7 @@ const connectToServer = baseUrl[process.env.NODE_ENV] || baseUrl.default;
 const endPoint = `${connectToServer}/${stage}/api/${versionString}`;
 console.log(`--> Using API at ${endPoint}`);
 
-function useHttpApi(method) {
+function useHttpApi(method, token) {
   const [data, setData] = useState({});
   const [status, setStatus] = useState();
   const [isLoading, setisLoading] = useState(true);
