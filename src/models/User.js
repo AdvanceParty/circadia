@@ -52,6 +52,10 @@ class User {
     return !this.isOnline ? User.Offline : this.doNotDisturb ? User.DnD : User.Available;
   }
 
+  get data() {
+    return JSON.parse(JSON.stringify(this._data));
+  }
+
   clone() {
     return new User(this._data);
   }
@@ -67,7 +71,9 @@ const generateDataObejct = () => {
   return {
     presence: null,
     id: null,
-    profile: null,
+    profile: {
+      images: [],
+    },
     dndStatus: null,
     pseudonym: getPseudonym(),
   };

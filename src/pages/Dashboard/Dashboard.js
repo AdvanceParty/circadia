@@ -8,7 +8,7 @@ import User from '../../models/User';
 
 function Dashboard() {
   const { isLoading, error, data } = useHttpApi('/users/list');
-  const { state, dispatch, getUsers } = useStore();
+  const { dispatch, getUsers } = useStore();
   const users = data.users || [];
 
   useEffect(() => {
@@ -21,10 +21,9 @@ function Dashboard() {
   }, [users]);
 
   const showUsers = () => {
-    console.log(getUsers());
     const tiles = users.map((userData) => {
       const user = new User(userData);
-      return <Tile user={user} key={user.id} />;
+      return <Tile userId={user.id} key={user.id} />;
     });
 
     return <div className={styles.tiles}>{tiles.map((tile) => tile)}</div>;
