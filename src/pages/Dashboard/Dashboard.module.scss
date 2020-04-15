@@ -1,7 +1,19 @@
-$tile-gap: calc(1.5vw + 0.6em);
+$bp: 700px;
+
+.tiles {
+  --gap: 4px;
+  --col-template: 1fr;
+}
+
+@media (min-width: $bp) {
+  .tiles {
+    --gap: 4px;
+    --col-template: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
 
 .tiles {
   display: grid;
-  grid-gap: $tile-gap;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: var(--gap);
+  grid-template-columns: var(--col-template);
 }

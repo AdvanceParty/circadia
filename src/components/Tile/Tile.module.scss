@@ -1,11 +1,25 @@
-.tile {
-  --border-size: 1px;
+[data-filter-online='true'] {
+  .offline {
+    display: none;
+  }
+}
 
+$bp: 700px;
+// colors
+.tile {
   --col-dark: rgba(30, 30, 30, 1);
+  --col-medium: rgba(30, 30, 30, 0.3);
   --col-light: #efefef;
   --col-accent-active: rgba(20, 140, 20, 1);
   --col-accent-busy: #f98d00;
   --col-accent-away: rgb(170, 60, 60);
+}
+
+// core
+.tile {
+  --border-size: 1px;
+  --border-size-icon: 1px;
+  --border-col: var(--col-medium);
 
   --shadow-active: 3px 3px 16px 2px rgba(0, 0, 0, 0.35);
   --shadow-away: inset 1px 1px 3px 0px rgba(0, 0, 0, 0.85);
@@ -16,11 +30,9 @@
   --shadow: var(--shadow-active);
   --textCol: var(--col-dark);
   --profile-filter: none;
-  --border-col: var(--col-dark);
 
   --col-icon-path: rgba(0, 0, 0, 0.75);
   --col-icon-bg: var(--col-accent);
-  --border-icon: 2px solid var(--col-icon-path);
   --col-text: #fff;
 
   &.offline {
@@ -40,82 +52,53 @@
     --col-accent: var(--col-accent-busy);
     --bg-col: var(--col-dark);
   }
+
+  --border-icon: var(--border-size-icon) solid var(--col-icon-path);
+  --border: var(--border-size) solid var(--border-col);
 }
 
+// larger screens
+@media (min-width: $bp) {
+  .tile {
+    --border-size: 1px;
+    --border-size-icon: 2px;
+    --border-col: var(--col-dark);
+  }
+}
+
+// ------------------------
 .tile {
   position: relative;
-  padding-top: 56.25%;
   transition: border 1200ms, padding 300ms;
-
   border-radius: 5px;
-  box-shadow: var(--shadow);
-  border: var(--border-size) solid var(--border-col);
+  border: var(--border);
 
-  display: grid;
-  grid-template-rows: auto auto;
+  // display: grid;
+  // grid-template-rows: auto auto;
+
+  padding: 10px 1rem 10px 5rem;
   overflow: hidden;
-  color: var(--col-text);
+  color: var(--col-dark);
+
+  p {
+    display: none;
+  }
 
   opacity: var(--tile-opacity);
 
   filter: var(--profile-filter);
 
   background-image: var(--profile-pic);
-  background-position: 50% 50%;
-  background-size: cover;
+  background-position: left 50%;
+  background-size: 4rem;
+  background-repeat: no-repeat;
 
   div {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-
-    background-color: rgba(255, 255, 255, calc(1 - var(--tile-opacity)));
-
-    display: flex;
-    flex-direction: column;
-    align-content: flex-end;
-    justify-content: flex-end;
+    // padding: 10px 1rem 10px rem;
 
     h2 {
-      padding-top: 1rem;
-    }
-
-    > * {
-      line-height: 1em;
       margin: 0;
-      padding: 0 1rem 0.25rem 1rem;
-      background: rgba(0, 0, 0, 0.4);
-
-      &:last-of-type {
-        padding-bottom: 0.75rem;
-      }
-
-      &:last-child {
-        background: linear-gradient(
-          180deg,
-          rgba(0, 0, 0, 0.4) 0%,
-          rgba(0, 0, 0, 0.55) 60%,
-          rgba(0, 0, 0, 0.65) 100%
-        );
-      }
-
-      &:nth-child(2) {
-        background: linear-gradient(
-          180deg,
-          rgba(0, 0, 0, 0.3) 0%,
-          rgba(0, 0, 0, 0.3) 15%,
-          rgba(0, 0, 0, 0.4) 100%
-        );
-        // background: black;
-      }
-
-      // padding-bottom: 1rem;
-    }
-
-    h2 {
-      text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+      padding: 0;
       text-transform: uppercase;
       font-size: 1.2rem;
     }
@@ -156,6 +139,73 @@
       padding: 5px;
       border-radius: 100px;
       background: var(--col-icon-bg);
+    }
+  }
+}
+
+@media (min-width: $bp) {
+  .tile {
+    padding-top: 56.25%;
+
+    color: var(--col-light);
+
+    background-position: 50% 50%;
+    background-size: cover;
+
+    box-shadow: var(--shadow);
+
+    div {
+      // padding: 10px 1rem 10px 5rem;
+      padding: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      background-color: rgba(255, 255, 255, calc(1 - var(--tile-opacity)));
+
+      display: flex;
+      flex-direction: column;
+      align-content: flex-end;
+      justify-content: flex-end;
+
+      h2,
+      p {
+        display: block;
+
+        line-height: 1em;
+        margin: 0;
+        padding: 0 1rem 0.25rem 1rem;
+        background: rgba(0, 0, 0, 0.4);
+
+        &:last-of-type {
+          padding-bottom: 0.75rem;
+        }
+
+        &:last-child {
+          background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.4) 0%,
+            rgba(0, 0, 0, 0.55) 60%,
+            rgba(0, 0, 0, 0.65) 100%
+          );
+        }
+
+        &:nth-child(2) {
+          background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.3) 0%,
+            rgba(0, 0, 0, 0.3) 15%,
+            rgba(0, 0, 0, 0.4) 100%
+          );
+        }
+      }
+
+      h2 {
+        padding-top: 1rem;
+        text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+      }
     }
   }
 }

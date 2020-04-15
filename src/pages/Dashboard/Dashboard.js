@@ -1,18 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import useHttpApi from '../../connecters/httpApi.connector';
-// import { useAuth0 } from '../contexts/auth0.context';
 import { useStore } from '../../contexts/store.context';
 import styles from './Dashboard.module.scss';
 import Tile from '../../components/Tile/Tile';
 import User from '../../models/User';
 
+const sortBy = require('lodash.sortby');
+
 function Dashboard() {
   const { isLoading, error, data } = useHttpApi('/users/list');
   const { dispatch, getUsers } = useStore();
   const users = data.users || [];
-
-  // const {getTokenSilently } = useAuth0();
+  const [filterOnline, setFilterOnline] = useState(false);
 
   useEffect(() => {
     users.map((user) => {
@@ -24,17 +24,37 @@ function Dashboard() {
   }, [users]);
 
   const showUsers = () => {
+    const users = sortBy(getUsers(), [
+      function (user) {
+        return user.name;
+      },
+    ]);
+
     const tiles = users.map((userData) => {
       const user = new User(userData);
       return <Tile userId={user.id} key={user.id} />;
     });
 
-    return <div className={styles.tiles}>{tiles.map((tile) => tile)}</div>;
+    return (
+      <div className={styles.tiles} data-filter-online={filterOnline}>
+        {tiles.map((tile) => tile)}
+      </div>
+    );
   };
 
-  const content = isLoading ? 'Loading..' : error ? <Redirect to='/login' /> : showUsers(data);
+  const content = isLoading ? 'Loading..' : error ? <Redirect to='/login' /> : showUsers();
 
-  return <>{content}</>;
+  return (
+    <>
+      <div>
+        Showing {filterOnline ? 'online peeps' : 'everybody'}.
+        <button onClick={() => setFilterOnline(!filterOnline)}>
+          {filterOnline ? 'Show All' : 'Show Online'}
+        </button>
+      </div>
+      {content}
+    </>
+  );
 }
 
 export default Dashboard;

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import styles from './Tile.module.scss';
 import { useStore } from '../../contexts/store.context';
 import User from '../../models/User';
@@ -26,9 +26,9 @@ function Tile(props) {
     '--profile-pic': `url("${image.src}")`,
   };
 
-  const userTitle = () => {
-    return userData.title ? <p className={styles.title}>{userData.title}</p> : '';
-  };
+  // const userTitle = () => {
+  //   return userData.title ? <p className={styles.title}>{userData.title}</p> : '';
+  // };
 
   return (
     <article {...restProps} className={classList} style={inlineStyleAtts}>
