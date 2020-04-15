@@ -7,7 +7,7 @@ $bp: 700px;
 
 @media (min-width: $bp) {
   .tiles {
-    --gap: 4px;
+    --gap: 30px;
     --col-template: repeat(auto-fill, minmax(300px, 1fr));
   }
 }
