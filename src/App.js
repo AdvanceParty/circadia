@@ -5,8 +5,6 @@ import Dashboard from './pages/Dashboard/';
 import LoggedOut from './pages/LoggedOut';
 import PageHeader from './components/PageHeader/';
 
-import Log from './Log';
-
 import './theme/styles.scss';
 
 function App() {
