@@ -1,0 +1,18 @@
+:root {
+  //  vspace scale
+  --vspace-xs: calc(1em / (var(--text-scale-ratio) * var(--text-scale-ratio)));
+  --vspace-sm: calc(1em / var(--text-scale-ratio));
+  --vspace-md: calc(1em * var(--text-scale-ratio));
+  --vspace-lg: calc(1em * var(--text-scale-ratio) * var(--text-scale-ratio));
+  --vspace-xl: calc(
+    1em * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio)
+  );
+  --vspace-xxl: calc(
+    1em * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio) *
+      var(--text-scale-ratio)
+  );
+  --vspace-xxxl: calc(
+    1em * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio) *
+      var(--text-scale-ratio) * var(--text-scale-ratio)
+  );
+}

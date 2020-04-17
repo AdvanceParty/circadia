@@ -1,0 +1,32 @@
+html,
+body {
+  min-width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+main {
+  padding: 7em 1em 1em 1em;
+}
+
+#root > footer {
+  padding: 2em 1em;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+}
+
+#root > header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}

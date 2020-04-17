@@ -2,7 +2,7 @@
 
 ## About
 
-Dahsboard and status hub to help keep track who's where doing what. Connects to an api on AWS Gateway (see carcadia-api repo).
+Dahsboard and status hub to help keep track who's where doing what. Connects to an api on AWS Gateway (see circadia-api repo).
 
 ---
 

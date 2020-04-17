@@ -9,7 +9,7 @@ function LogInOut() {
   };
 
   return (
-    <button disabled={isLoading} onClick={clickHandler}>
+    <button className='button is-small' disabled={isLoading} onClick={clickHandler}>
       {label}
     </button>
   );

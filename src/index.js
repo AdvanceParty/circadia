@@ -13,7 +13,7 @@ import { WebsocketContextProvider } from './contexts/websocket.context';
 
 import App from './App';
 
-import './theme/styles.scss';
+// import './theme/styles.scss';
 
 ReactDOM.render(
   <Auth0Provider>

@@ -1,30 +1,20 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState } from 'react';
 import AuthedUser from '../AuthedUser';
 import LogInOut from '../LogInOut';
 import styles from './PageHeader.module.scss';
 
 function PageHeader(props) {
+  const [compact] = useState(false);
+  const classes = [styles.header];
+  if (compact) classes.push(styles.compact);
+
   return (
-    <header className={styles.header}>
+    <header className={classes.join(' ')}>
       <h1>{props.title}</h1>
-      <div className={styles.authbox}>
-        <AuthedUser />
-        <LogInOut />
-      </div>
+      <AuthedUser className={styles.authUser} />
+      <LogInOut />
     </header>
   );
 }
 
 export default PageHeader;
-
-/*
-<nav>
-        <NavLink to='/' exact>
-          Home
-        </NavLink>
-        <NavLink to='/dashboard' exact>
-          Dashboard
-        </NavLink>
-      </nav>
-*/

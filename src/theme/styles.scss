@@ -1,31 +1,7 @@
 @import '_boxreset';
+@import '_palette';
 @import '_typography';
-@import '_backgroundPattern';
-
-html,
-body {
-  min-width: 100%;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-}
-
-#root {
-  min-height: 100vh;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-}
-
-main {
-  padding: 1em;
-}
-
-#root > footer {
-  padding: 2em 1em;
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-}
+@import '_layout';
 
 a {
   text-decoration: underline;
