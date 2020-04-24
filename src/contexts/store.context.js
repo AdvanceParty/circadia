@@ -19,15 +19,15 @@ export const StoreProvider = (props) => {
         var updatedUser = new User(payload);
         return { users: { ...state.users, [updatedUser.id]: updatedUser } };
       case 'updateUserProfile':
-        var updatedUser = state.users[payload.id] || new User();
+        var updatedUser = state.users[payload.id] || new User(payload);
         updatedUser.setProfile(payload);
         return { users: { ...state.users, [updatedUser.id]: updatedUser } };
       case 'updateUserDnd':
-        var updatedUser = state.users[payload.id] || new User();
+        var updatedUser = state.users[payload.id] || new User(payload);
         updatedUser.setDndStatus(payload);
         return { users: { ...state.users, [updatedUser.id]: updatedUser } };
       case 'updateUserPresence':
-        var updatedUser = state.users[payload.id] || new User();
+        var updatedUser = state.users[payload.id] || new User(payload);
         updatedUser.setPresence(payload);
         return { users: { ...state.users, [updatedUser.id]: updatedUser } };
       default:
